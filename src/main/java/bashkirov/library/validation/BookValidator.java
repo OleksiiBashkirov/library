@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class BookValidation implements Validator {
+public class BookValidator implements Validator {
     private final BookDao bookDao;
 
 

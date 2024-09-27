@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -57,5 +58,13 @@ public class PersonDao {
                 "delete from person where id = ?",
                 id
         );
+    }
+
+    public Optional<Person> findByInn(String inn) {
+        return jdbcTemplate.query(
+                "select * from person where inn = ?",
+                new Object[]{inn},
+                new BeanPropertyRowMapper<>(Person.class)
+        ).stream().findAny();
     }
 }
