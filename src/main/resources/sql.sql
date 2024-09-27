@@ -7,10 +7,14 @@ create table person
     birthdate date
 );
 
-drop table person;
-
 insert into person (name, lastname, inn, birthdate)
-values ('Oleksii', 'Bashkirov', '3332221110', '1989-08-25');
+values ('Oleksii', 'Bashkirov', '3332221110', '1989-08-25'),
+       ('Ivan', 'Petrov', '3231212456', '2001-02-15'),
+       ('Sveta', 'Kozakova', '3202504585', '1995-09-29'),
+       ('Olga', 'Vasilenko', '3012546545', '1975-04-11'),
+       ('Igor', 'Smirenko', '2904561232', '1960-05-09');
+
+
 
 select *
 from person;

@@ -1,6 +1,7 @@
 package bashkirov.library.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,6 @@ public class Person {
     @Pattern(regexp = "^[0-9]{10}$")
     private String inn;
 
+    @PastOrPresent(message = "Date cannot be in the future")
     private LocalDate birthdate;
 }
