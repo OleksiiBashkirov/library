@@ -17,6 +17,12 @@
 <p th:text="${'Birthdate='+personGetById.getBirthdate()}"></p>
 
 
+<form th:method="GET"
+th:action="@{/person/edit/{id}(id=${personGetById.getId()})}">
+    <input type="submit" value="Edit">
+
+</form>
+
 
 
 

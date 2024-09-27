@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Person new page</title>
+    <title>Person update page</title>
 </head>
 <body>
 
-<form th:method="POST"
-      th:action="@{/person}"
-      th:object="${personSave}"
->
+<form th:method="PUT"
+      th:action="@{/person/{id} (id=${personUpdate.getId()})}"
+      th:object="${personUpdate}">
+
     <label for="nameId">Name=</label>
     <input type="text" th:field="*{name}" id="nameId">
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
@@ -22,18 +22,15 @@
 
     <label for="innId">INN=</label>
     <input type="text" th:field="*{inn}" id="innId">
-    <div style="color: red" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}"></div>
+    <div style="color:red" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}"></div>
     <br>
 
     <label for="birthdateId">Birthdate=</label>
     <input type="text" th:field="*{birthdate}" id="birthdateId">
-    <div style="color:red" th:if="*{#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
+    <div style="color: red" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
     <br>
-
-    <input type="submit" value="Save">
-
+    <input type="submit" value="Edit">
 </form>
-
 
 </body>
 </html>

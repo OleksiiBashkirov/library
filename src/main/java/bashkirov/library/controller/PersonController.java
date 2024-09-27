@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -40,22 +41,46 @@ public class PersonController {
 
     @GetMapping("/new")
     public String savePersonNewPage(
-            @ModelAttribute("personModelAttribute1") Person person
+            @ModelAttribute("personSave") Person person
     ) {
         return "person-new-page";
     }
 
     @PostMapping
     public String save(
-            @Valid @ModelAttribute("personModelAttribute1") Person person,
+            @Valid @ModelAttribute("personSave") Person person,
             BindingResult bindingResult
     ) {
         personValidator.validate(person, bindingResult);
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "person-new-page";
         }
         personDao.save(person);
         return "redirect:/person";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String updatePersonUpdatePage(
+            @PathVariable("id") int personId,
+            Model model
+    ) {
+        model.addAttribute("personUpdate", personDao.getById(personId));
+        return "person-update-page";
+    }
+
+    @PutMapping("/{id}")
+    public String update(
+            @PathVariable("id") int personId,
+            @Valid @ModelAttribute("personUpdate") Person person,
+            BindingResult bindingResult
+    ) {
+        person.setId(personId);
+        personValidator.validate(person, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "person-update-page";
+        }
+        personDao.update(personId, person);
+        return "redirect:/person/" + personId;
     }
 
 

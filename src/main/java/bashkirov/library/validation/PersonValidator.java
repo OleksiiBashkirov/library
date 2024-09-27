@@ -27,13 +27,8 @@ public class PersonValidator implements Validator {
         if (optionalPerson.isPresent()) {
             Person existedPerson = optionalPerson.get();
             if (person.getId() == 0 || person.getId() != existedPerson.getId()) {
-                errors.rejectValue(
-                        "inn",
-                        "",
-                        String.format("Person with such INN already exists", person.getInn())
-                );
+                errors.rejectValue("inn", "", String.format("Person with such INN already exists", person.getInn()));
             }
         }
-
     }
 }
