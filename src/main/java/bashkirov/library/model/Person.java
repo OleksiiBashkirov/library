@@ -25,7 +25,7 @@ public class Person {
     private String lastname;
 
     @NotBlank(message = "Field cannot be empty")
-    @Pattern(regexp = "^[0-9]{10}$")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Must have exactly 10 digits. Example=`1234567890`")
     private String inn;
 
     @PastOrPresent(message = "Date cannot be in the future")
