@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person page</title>
+</head>
+<body>
+<!--<form th:method="GET"-->
+<!--th:action="@{/person}">-->
+<!--    <input type="submit" value="Back to people list">-->
+<!--</form>-->
+
+<p th:text="${'INFORMATION ABOUT PERSON WITH ID='+personGetById.getId()}"></p>
+<p th:text="${'Name='+personGetById.getName()}"></p>
+<p th:text="${'Lastname='+personGetById.getLastname()}"></p>
+<p th:text="${'INN='+personGetById.getInn()}"></p>
+<p th:text="${'Birthdate='+personGetById.getBirthdate()}"></p>
+
+
+
+
+
+</body>
+</html>
