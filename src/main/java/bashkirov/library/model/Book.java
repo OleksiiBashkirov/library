@@ -26,7 +26,7 @@ public class Book {
     private int year;
 
     @NotBlank(message = "Field cannot be empty")
-    @Pattern(regexp = "^\\d[0-9]{4}-\\d[0-9]{6}$", message = "Field should be in the format `1234-123456")
+    @Pattern(regexp = "^\\d{4}-\\d{6}$", message = "Field should be in the format `1234-123456")
     @Size(min = 11, max = 11, message = "Field should be in the format `1234-123456`")
     private String article;
 }
