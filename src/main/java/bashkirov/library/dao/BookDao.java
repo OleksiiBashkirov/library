@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -58,4 +59,13 @@ public class BookDao {
                 id
         );
     }
+
+    public Optional<Book> findByArticle(String article) {
+        return jdbcTemplate.query(
+                "select * from book where article = ?",
+                new Object[]{article},
+                new BeanPropertyRowMapper<>(Book.class)
+        ).stream().findAny();
+    }
+
 }
