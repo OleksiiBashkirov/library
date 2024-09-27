@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +27,5 @@ public class Person {
     @Pattern(regexp = "^[0-9]{10}$")
     private String inn;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$")
-    private String birthdate;
+    private LocalDate birthdate;
 }

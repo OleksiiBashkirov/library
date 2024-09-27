@@ -4,5 +4,13 @@ create table person
     name      varchar(32)                                      not null,
     lastname  varchar(32)                                      not null,
     inn       varchar(10) check ( inn ~ '^[0-9]{10}$' ) unique not null,
-    birthdate varchar(10) check ( birthdate ~ '^\\d{4}-\\d{2}-\\d{2}$')
+    birthdate date
 );
+
+drop table person;
+
+insert into person (name, lastname, inn, birthdate)
+values ('Oleksii', 'Bashkirov', '3332221110', '1989-08-25');
+
+select *
+from person;
