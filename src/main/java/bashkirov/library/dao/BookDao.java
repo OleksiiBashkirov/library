@@ -52,7 +52,7 @@ public class BookDao {
         );
     }
 
-    public void delete(int id) {
+    public void deleteById(int id) {
         jdbcTemplate.update(
                 "delete from book where id = ?",
                 id
