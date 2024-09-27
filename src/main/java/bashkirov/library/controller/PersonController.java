@@ -24,6 +24,14 @@ public class PersonController {
         return "person-page";
     }
 
+    @GetMapping
+    public String getAll(
+            Model model
+    ) {
+        model.addAttribute("personGetAll", personDao.getAll());
+        return "people-page";
+    }
+
 
 
 
