@@ -9,15 +9,17 @@
     <input type="submit" value="Back">
 </form>
 
-<p th:text="${'INFORMATION ABOUT BOOK WITH ID=' + bookGetById.getId()}"></p>
+<p th:text="${'INFORMATION ABOUT THE BOOK WITH ID=' + bookGetById.getId()}"></p>
 <p th:text="${'Title=' + bookGetById.getTitle()}"></p>
 <p th:text="${'Author=' + bookGetById.getAuthor()}"></p>
 <p th:text="${'Year=' + bookGetById.getYear()}"></p>
 <p th:text="${'Article=' + bookGetById.getArticle()}"></p>
 
 <div th:if="${personList}">
-    <form th:method="PUT" th:action="@{/book/assign/{id}(id=${bookOwner.getId()})}">
-        <label for="personSelectId">CHOOSE PERSON:</label>
+    <p>This book is AVAILABLE</p>
+    <form th:method="PUT"
+          th:action="@{/book/assign/{id}(id=${bookOwner.getId()})}">
+        <label for="personSelectId">CHOOSE PERSON to assign:</label>
         <select th:object="${bookOwner}"
                 th:field="*{id}"
                 id="personSelectId"
@@ -33,13 +35,13 @@
 </div>
 <br>
 <div th:if="${bookPersonOwner}">
-    <p>Current Book owner is =</p>
+    <p style="display: inline;">Current Book owner is =</p>
     <a th:href="@{/person/{id}(id=${bookPersonOwner.getId()})}"
-       th:text="${bookPersonOwner.getName() + ' ' + bookPersonOwner.getLastname() + ', inn= ' + bookPersonOwner.getInn()}">
+       th:text="${bookPersonOwner.getName() + ' ' + bookPersonOwner.getLastname() + ', inn= ' + bookPersonOwner.getInn()}" style="display: inline">
     </a>
-    <br>
     <form th:method="PUT"
     th:action="@{/book/release/{id}(id=${bookPersonOwner.getId()})}">
+    <br>
         <input type="submit" value="Release">
     </form>
 
