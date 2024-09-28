@@ -10,6 +10,10 @@
   <a th:href="@{/book/{id}(id=${book.getId()})}"
      th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year= ' + book.getYear() + ', artilce=' + book.getArticle()}"></a>
 </div>
+<br>
+<form th:method="GET" th:action="@{/book/new}">
+    <input type="submit" value="Add new Book">
+</form>
 
 
 
