@@ -1,7 +1,7 @@
 package bashkirov.library.model;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class Book {
     @Size(min = 3, max = 64, message = "Field cannot be less 3 and more 64 characters")
     private String author;
 
-    @PastOrPresent(message = "Year cannot be in the future")
+    @Max(value = 2024, message = "Year cannot be in the future")
     private int year;
 
     @NotBlank(message = "Field cannot be empty")
