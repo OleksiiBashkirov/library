@@ -22,6 +22,12 @@ th:action="@{/person/edit/{id}(id=${personGetById.getId()})}">
     <input type="submit" value="Edit">
 </form>
 
+<form th:method="DELETE"
+th:action="@{/person/{id}(id=${personGetById.getId()})}"
+style="display: inline">
+    <input type="submit" value="Delete">
+</form>
+
 
 
 
