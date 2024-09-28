@@ -23,6 +23,12 @@
         <input type="submit" value="Edit">
     </form>
 
+    <form th:method="DELETE"
+          th:action="@{/person/{id}(id=${person.getId()})}"
+          style="display: inline">
+        <input type="submit" value="Delete">
+    </form>
+
 
 </div>
 
