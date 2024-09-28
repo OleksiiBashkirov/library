@@ -32,7 +32,15 @@
     </form>
 </div>
 <br>
-
+<div th:if="${bookPersonOwner}">
+    <p>Current Book owner is =</p>
+    <a th:href="@{/person/{id}(id=${bookPersonOwner.getId()})}"
+       th:text="${bookPersonOwner.getName() + ' ' + bookPersonOwner.getLastname() + ', inn= ' + bookPersonOwner.getInn()}">
+    </a>
+</div>
+<br>
+<br>
+<br>
 <div>
     <form th:method="GET" th:action="@{/book/edit/{id}(id=${bookGetById.getId()})}" style="display: inline">
         <input type="submit" value="Edit">
