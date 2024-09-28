@@ -7,14 +7,23 @@
 <body>
 
 <div th:each="book : ${bookGetAll}">
-  <a th:href="@{/book/{id}(id=${book.getId()})}"
-     th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year= ' + book.getYear() + ', artilce=' + book.getArticle()}"></a>
+    <a th:href="@{/book/{id}(id=${book.getId()})}"
+       th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year= ' + book.getYear() + ', artilce=' + book.getArticle()}"></a>
+
+    <form th:method="GET" th:action="@{book/edit/{id}(id=${book.getId()})}" style="display: inline; margin-left: 10px;">
+        <input type="submit" value="Edit">
+    </form>
+    <form th:method="DELETE" th:action="@{/book/{id}(id=${book.getId()})}" style="display: inline; margin-left: 10px;">
+        <input type="submit" value="Delete">
+    </form>
+
+
 </div>
+
 <br>
 <form th:method="GET" th:action="@{/book/new}">
     <input type="submit" value="Add new Book">
 </form>
-
 
 
 </body>
