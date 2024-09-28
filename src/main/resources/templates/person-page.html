@@ -5,10 +5,10 @@
     <title>Person page</title>
 </head>
 <body>
-<!--<form th:method="GET"-->
-<!--th:action="@{/person}">-->
-<!--    <input type="submit" value="Back to people list">-->
-<!--</form>-->
+<form th:method="GET"
+      th:action="@{/person}">
+    <input type="submit" value="Back">
+</form>
 
 <p th:text="${'INFORMATION ABOUT PERSON WITH ID='+personGetById.getId()}"></p>
 <p th:text="${'Name='+personGetById.getName()}"></p>
@@ -18,17 +18,16 @@
 
 
 <form th:method="GET"
-th:action="@{/person/edit/{id}(id=${personGetById.getId()})}">
+      th:action="@{/person/edit/{id}(id=${personGetById.getId()})}"
+      style="display: inline">
     <input type="submit" value="Edit">
 </form>
 
 <form th:method="DELETE"
-th:action="@{/person/{id}(id=${personGetById.getId()})}"
-style="display: inline">
+      th:action="@{/person/{id}(id=${personGetById.getId()})}"
+      style="display: inline">
     <input type="submit" value="Delete">
 </form>
-
-
 
 
 </body>
