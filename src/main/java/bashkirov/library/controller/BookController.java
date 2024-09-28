@@ -6,6 +6,7 @@ import bashkirov.library.model.Book;
 import bashkirov.library.model.Person;
 import bashkirov.library.validation.BookValidator;
 import jakarta.validation.Valid;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/book")
@@ -40,9 +39,7 @@ public class BookController {
         } else {
             model.addAttribute("personList", personDao.getAll());
         }
-
         model.addAttribute("bookGetById", bookDao.getById(bookId));
-
         return "book-page";
     }
 
@@ -120,5 +117,4 @@ public class BookController {
         bookDao.releaseBookOwnerByBookId(bookId);
         return "redirect:/book/" + bookId;
     }
-
 }

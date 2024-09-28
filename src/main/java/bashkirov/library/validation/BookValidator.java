@@ -2,19 +2,17 @@ package bashkirov.library.validation;
 
 import bashkirov.library.dao.BookDao;
 import bashkirov.library.model.Book;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.util.Objects;
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class BookValidator implements Validator {
     private final BookDao bookDao;
-
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -35,6 +33,5 @@ public class BookValidator implements Validator {
                 );
             }
         }
-
     }
 }

@@ -24,8 +24,6 @@ create table book
     person_id int                                                   references person (id) on delete set null
 );
 
-drop table book;
-
 insert into book(title, author, year, article)
 values ('Harry Potter 1', 'J.K. Rowling', 1998, '0000-000001'),
        ('Harry Potter 2', 'J.K. Rowling', 1998, '0000-000002'),
@@ -37,6 +35,3 @@ values ('Harry Potter 1', 'J.K. Rowling', 1998, '0000-000001'),
        ('The Picture of Dorian Gray', 'Oscar Wilde', 1890, '0000-000008'),
        ('1984', 'George Orwell', 1949, '0000-000009'),
        ('Murder on the Orient Express', 'Agatha Christie', 1934, '0000-000010');
-
-select *
-from book;

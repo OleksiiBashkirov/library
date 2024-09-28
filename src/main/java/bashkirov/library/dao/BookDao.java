@@ -2,14 +2,13 @@ package bashkirov.library.dao;
 
 import bashkirov.library.model.Book;
 import bashkirov.library.model.Person;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -91,6 +90,4 @@ public class BookDao {
                 bookId
         );
     }
-
-
 }

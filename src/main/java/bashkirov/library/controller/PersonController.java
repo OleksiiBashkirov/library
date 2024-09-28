@@ -5,6 +5,9 @@ import bashkirov.library.model.Book;
 import bashkirov.library.model.Person;
 import bashkirov.library.validation.PersonValidator;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Controller
 @RequestMapping("/person")
@@ -34,13 +33,11 @@ public class PersonController {
             Model model
     ) {
         List<Book> allBooksTakenByPersonId = personDao.getAllBooksTakenByPersonId(personId);
-
         if (!allBooksTakenByPersonId.isEmpty()) {
             model.addAttribute("bookTakenList", personDao.getAllBooksTakenByPersonId(personId));
         } else {
             model.addAttribute("bookEmptyList", List.of());
         }
-
         model.addAttribute("personGetById", personDao.getById(personId));
         return "person-page";
     }
@@ -104,7 +101,6 @@ public class PersonController {
         personDao.deleteById(personId);
         return "redirect:/person";
     }
-
 
     public String formatDate(LocalDate date) {
         return date != null ? date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
