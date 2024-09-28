@@ -1,5 +1,6 @@
 package bashkirov.library.dao;
 
+import bashkirov.library.model.Book;
 import bashkirov.library.model.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -66,5 +67,13 @@ public class PersonDao {
                 new Object[]{inn},
                 new BeanPropertyRowMapper<>(Person.class)
         ).stream().findAny();
+    }
+
+    public List<Book> getAllBooksTakenByPersonId(int personId) {
+        return jdbcTemplate.query(
+                "select * from book where person_id = ?",
+                new Object[]{personId},
+                new BeanPropertyRowMapper<>(Book.class)
+        );
     }
 }

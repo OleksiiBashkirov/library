@@ -17,6 +17,20 @@
 <p th:text="${'Birthdate='+ @personController.formatDate(personGetById.getBirthdate())}"></p>
 
 
+<div th:if="${bookTakenList}"
+     th:each="book : ${bookTakenList}">
+    <p>No books taken yet</p>
+    <a th:href="@{/book/{id}(id=${book.getId()})}"
+       th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year=' + book.getYear() + ', article=' + book.getArticle()}"
+    >
+    </a>
+</div>
+<div th:if="${bookEmptyList}">
+    <p>No books taken yet</p>
+
+</div>
+
+
 <form th:method="GET"
       th:action="@{/person/edit/{id}(id=${personGetById.getId()})}"
       style="display: inline">
