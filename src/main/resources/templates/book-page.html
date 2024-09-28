@@ -13,5 +13,10 @@
 <p th:text="${'Article=' + bookGetById.getArticle()}"></p>
 
 
+<form th:method="DELETE"
+      th:action="@{/book/{id}(id=${bookGetById.getId()})}">
+    <input type="submit" value="Delete">
+</form>
+
 </body>
 </html>
