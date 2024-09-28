@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -51,12 +52,34 @@ public class BookController {
             BindingResult bindingResult
     ) {
         bookValidator.validate(newBook, bindingResult);
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "book-new-page";
         }
         bookDao.save(newBook);
         return "redirect:/book";
+    }
 
+    @GetMapping("/edit/{id}")
+    public String bookUpdatePage(
+            @PathVariable("id") int bookId,
+            Model model
+    ) {
+        model.addAttribute("updateBook", bookDao.getById(bookId));
+        return "book-update-page";
+    }
+
+    @PutMapping("/{id}")
+    public String update(
+            @PathVariable("id") int bookId,
+            @Valid @ModelAttribute("updateBook") Book updateBook,
+            BindingResult bindingResult
+    ) {
+        bookValidator.validate(updateBook, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "book-update-page";
+        }
+        bookDao.update(bookId, updateBook);
+        return "redirect:/book/" + bookId;
     }
 
 

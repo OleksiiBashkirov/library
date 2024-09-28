@@ -31,7 +31,7 @@ public class BookValidator implements Validator {
                 errors.rejectValue(
                         "article",
                         "",
-                        String.format("Book with such article= %s already exists", book.getAuthor())
+                        String.format("Book with such article= %s already exists", book.getArticle())
                 );
             }
         }
