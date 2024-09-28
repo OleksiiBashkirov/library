@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books page</title>
+</head>
+<body>
+
+<div th:each="book : ${bookGetAll}">
+  <a th:href="@{/book/{id}(id=${book.getId()})}"
+     th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year= ' + book.getYear() + ', artilce=' + book.getArticle()}"></a>
+</div>
+
+
+
+</body>
+</html>
