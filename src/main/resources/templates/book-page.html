@@ -5,6 +5,9 @@
     <title>Book page</title>
 </head>
 <body>
+<form th:method="GET" th:action="@{/book}">
+    <input type="submit" value="Back">
+</form>
 
 <p th:text="${'INFORMATION ABOUT BOOK WITH ID=' + bookGetById.getId()}"></p>
 <p th:text="${'Title=' + bookGetById.getTitle()}"></p>
@@ -12,11 +15,16 @@
 <p th:text="${'Year=' + bookGetById.getYear()}"></p>
 <p th:text="${'Article=' + bookGetById.getArticle()}"></p>
 
+<div>
+    <form th:method="GET" th:action="@{/book/edit/{id}(id=${bookGetById.getId()})}" style="display: inline">
+        <input type="submit" value="Edit">
+    </form>
 
-<form th:method="DELETE"
-      th:action="@{/book/{id}(id=${bookGetById.getId()})}">
-    <input type="submit" value="Delete">
-</form>
+    <form th:method="DELETE"
+          th:action="@{/book/{id}(id=${bookGetById.getId()})}" style="display: inline">
+        <input type="submit" value="Delete">
+    </form>
+</div>
 
 </body>
 </html>
