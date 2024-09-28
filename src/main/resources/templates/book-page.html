@@ -37,6 +37,12 @@
     <a th:href="@{/person/{id}(id=${bookPersonOwner.getId()})}"
        th:text="${bookPersonOwner.getName() + ' ' + bookPersonOwner.getLastname() + ', inn= ' + bookPersonOwner.getInn()}">
     </a>
+    <br>
+    <form th:method="PUT"
+    th:action="@{/book/release/{id}(id=${bookPersonOwner.getId()})}">
+        <input type="submit" value="Release">
+    </form>
+
 </div>
 <br>
 <br>

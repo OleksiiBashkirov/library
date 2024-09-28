@@ -112,4 +112,13 @@ public class BookController {
         bookDao.assignBookOwnerByPersonId(bookId, person.getId());
         return "redirect:/book/" + bookId;
     }
+
+    @PutMapping("/release/{id}")
+    public String release(
+            @PathVariable("id") int bookId
+    ) {
+        bookDao.releaseBookOwnerByBookId(bookId);
+        return "redirect:/book/" + bookId;
+    }
+
 }

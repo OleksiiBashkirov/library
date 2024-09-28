@@ -85,5 +85,12 @@ public class BookDao {
         );
     }
 
+    public void releaseBookOwnerByBookId(int bookId) {
+        jdbcTemplate.update(
+                "update book set person_id = null where id = ?",
+                bookId
+        );
+    }
+
 
 }
