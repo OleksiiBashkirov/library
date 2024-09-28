@@ -15,6 +15,24 @@
 <p th:text="${'Year=' + bookGetById.getYear()}"></p>
 <p th:text="${'Article=' + bookGetById.getArticle()}"></p>
 
+<div th:if="${personList}">
+    <form th:method="PUT" th:action="@{/book/assign/{id}(id=${bookOwner.getId()})}">
+        <label for="personSelectId">CHOOSE PERSON:</label>
+        <select th:object="${bookOwner}"
+                th:field="*{id}"
+                id="personSelectId"
+        >
+            <option th:each="bookOwner : ${personList}"
+                    th:value="${bookOwner.getId()}"
+                    th:text="${bookOwner.getName() + ' ' + bookOwner.getLastname() + ',inn= ' + bookOwner.getInn()}">
+            </option>
+        </select>
+
+        <input type="submit" value="Assign">
+    </form>
+</div>
+<br>
+
 <div>
     <form th:method="GET" th:action="@{/book/edit/{id}(id=${bookGetById.getId()})}" style="display: inline">
         <input type="submit" value="Edit">
@@ -25,6 +43,5 @@
         <input type="submit" value="Delete">
     </form>
 </div>
-
 </body>
 </html>

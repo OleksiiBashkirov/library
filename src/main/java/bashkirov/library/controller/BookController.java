@@ -1,7 +1,9 @@
 package bashkirov.library.controller;
 
 import bashkirov.library.dao.BookDao;
+import bashkirov.library.dao.PersonDao;
 import bashkirov.library.model.Book;
+import bashkirov.library.model.Person;
 import bashkirov.library.validation.BookValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +18,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/book")
 @RequiredArgsConstructor
 public class BookController {
     private final BookDao bookDao;
     private final BookValidator bookValidator;
+    private final PersonDao personDao;
 
     @GetMapping("/{id}")
     public String getById(
             @PathVariable("id") int bookId,
-            Model model
+            Model model,
+            @ModelAttribute("bookOwner") Person BookOwner
     ) {
+        Optional<Person> optionalBookPersonOwner = bookDao.getBookOwnerByBookId(bookId);
+        if (optionalBookPersonOwner.isPresent()) {
+            model.addAttribute("bookPersonOwner", optionalBookPersonOwner.get());
+        } else {
+            model.addAttribute("personList", personDao.getAll());
+        }
+
         model.addAttribute("bookGetById", bookDao.getById(bookId));
+
         return "book-page";
     }
 
@@ -89,5 +103,13 @@ public class BookController {
     ) {
         bookDao.deleteById(bookId);
         return "redirect:/book";
+    }
+
+    @PutMapping("/assign/{id}")
+    public String assign(
+            @PathVariable("id") int bookId,
+            @ModelAttribute("bookOwner") Person person) {
+        bookDao.assignBookOwnerByPersonId(bookId, person.getId());
+        return "redirect:/book/" + bookId;
     }
 }
