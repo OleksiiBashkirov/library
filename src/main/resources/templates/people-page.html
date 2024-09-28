@@ -16,11 +16,18 @@
     }"
     >
     </a>
+
+    <form th:method="GET"
+          th:action="@{person/edit/{id}(id=${person.getId()})}"
+          style="display: inline">
+        <input type="submit" value="Edit">
+
+    </form>
 </div>
 
 
 <form th:method="GET"
-th:action="@{/person/new}">
+      th:action="@{/person/new}">
     <input type="submit" value="Add new Person">
 
 </form>
