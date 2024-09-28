@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -29,5 +30,6 @@ public class Person {
     private String inn;
 
     @PastOrPresent(message = "Date cannot be in the future")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 }

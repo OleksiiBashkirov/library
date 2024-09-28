@@ -14,7 +14,7 @@
 <p th:text="${'Name='+personGetById.getName()}"></p>
 <p th:text="${'Lastname='+personGetById.getLastname()}"></p>
 <p th:text="${'INN='+personGetById.getInn()}"></p>
-<p th:text="${'Birthdate='+personGetById.getBirthdate()}"></p>
+<p th:text="${'Birthdate='+ @personController.formatDate(personGetById.getBirthdate())}"></p>
 
 
 <form th:method="GET"

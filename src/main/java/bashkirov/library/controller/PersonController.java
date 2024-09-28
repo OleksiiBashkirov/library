@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/person")
 @RequiredArgsConstructor
@@ -81,6 +84,11 @@ public class PersonController {
         }
         personDao.update(personId, person);
         return "redirect:/person/" + personId;
+    }
+
+
+    public String formatDate(LocalDate date) {
+        return date != null ? date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
     }
 
 
