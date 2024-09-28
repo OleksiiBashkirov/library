@@ -19,15 +19,15 @@
 
 <div th:if="${bookTakenList}"
      th:each="book : ${bookTakenList}">
-    <p>No books taken yet</p>
+    <p>LIST OF BOOKS:</p>
     <a th:href="@{/book/{id}(id=${book.getId()})}"
        th:text="${book.getId() + '. Title=' + book.getTitle() + ', author=' + book.getAuthor() + ', year=' + book.getYear() + ', article=' + book.getArticle()}"
     >
     </a>
 </div>
-<div th:if="${bookEmptyList}">
-    <p>No books taken yet</p>
 
+<div th:if="${bookEmptyList}"
+th:text="${'No books taken yet'}">
 </div>
 
 
